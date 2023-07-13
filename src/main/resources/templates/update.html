@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>Update user</title>
+</head>
+<body>
+<form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Update user</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="login">Username</label></td>
+            <td><input input readonly type="text" th:field="*{username}" id="login" placeholder="username"></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+        </tr>
+        <tr>
+            <td><label for="firstname">Firstname</label></td>
+            <td><input type="text" th:field="*{firstname}" id="firstname" placeholder="firstname"></td>
+        </tr>
+        <tr>
+            <td><label for="lastname">Lastname</label></td>
+            <td><input type="text" th:field="*{lastname}" id="lastname" placeholder="lastname"></td>
+        </tr>
+        <tr>
+            <td><label for="surname">Lastname</label></td>
+            <td><input type="text" th:field="*{surname}" id="surname" placeholder="surname"></td>
+        </tr>
+        <tr>
+            <td><label for="dob">DateOfBirth</label></td>
+            <td><input type="date" th:field="*{dob}" id="dob" placeholder="dd.mm.yyyy"></td>
+        </tr>
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td><input type="text" th:field="*{email}" id="email" placeholder="email"></td>
+        </tr>
+        <tr>
+            <td><label for="phone">Phone</label></td>
+            <td><input type="text" th:field="*{phone}" id="phone" placeholder="phone"></td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Update User">
+</form>
+</body>
+</html>
