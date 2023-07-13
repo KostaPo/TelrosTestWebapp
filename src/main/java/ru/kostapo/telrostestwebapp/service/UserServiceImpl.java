@@ -1,5 +1,6 @@
 package ru.kostapo.telrostestwebapp.service;
 
+import lombok.extern.log4j.Log4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -33,7 +35,6 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDTOList = new ArrayList<>();
         for (User user : userList) {
             UserDTO dto = UserDTO.builder()
-                    .id(user.getId())
                     .username(user.getUsername())
                     .password(user.getPassword())
                     .role(user.getRole())
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService {
                     .build();
             userDTOList.add(dto);
         }
+        log.debug("get all users list in service");
         return userDTOList;
     }
 
@@ -53,8 +55,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO findById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User with id = " + id + " not exist!"));
+        log.debug("find user by id:"+id+" in service");
         return UserDTO.builder()
-                .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .role(user.getRole())
@@ -71,8 +73,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO findByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username = " + username + " not exist!"));
+        log.debug("find user by username:"+username+" in service");
         return UserDTO.builder()
-                .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .role(user.getRole())
@@ -88,7 +90,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserDTO userDTO) {
         User user = User.builder()
-                .id(userDTO.getId())
                 .username(userDTO.getUsername())
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .role(Role.USER)
@@ -100,6 +101,7 @@ public class UserServiceImpl implements UserService {
                 .phone(userDTO.getPhone())
                 .build();
         userRepository.save(user);
+        log.debug("add new user username:"+userDTO.getUsername()+" in service");
     }
 
     @Override
@@ -115,11 +117,13 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
         userRepository.save(user);
+        log.debug("update user by username:"+userDTO.getUsername()+" in service");
     }
 
     @Override
-    public void delete(Long id) {
-        userRepository.deleteById(id);
+    public void delete(String username) {
+        log.debug("delete user by username:"+username+" in service");
+        userRepository.deleteByUsername(username);
     }
 
     @Override
@@ -128,6 +132,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User with username = " + username + " not exist!"));
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority("ROLE_"+user.getRole().name()));
+        log.debug("load UserDetails username:"+username+" role:"+user.getRole().name() +" in service");
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),

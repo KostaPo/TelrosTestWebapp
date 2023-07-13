@@ -28,8 +28,8 @@
         <td th:text="${user.dob}"></td>
         <td th:text="${user.email}"></td>
         <td th:text="${user.phone}"></td>
-        <td><a th:href="@{users/update/{id}(id=${user.id})}">Edit</a></td>
-        <td><a th:href="@{users/delete/{id}(id=${user.id})}">Delete</a></td>
+        <td><a th:href="@{users/update/{username}(username=${user.username})}">Edit</a></td>
+        <td><a th:href="@{users/delete/{username}(username=${user.username})}">Delete</a></td>
       </tr>
       </tbody>
     </table>

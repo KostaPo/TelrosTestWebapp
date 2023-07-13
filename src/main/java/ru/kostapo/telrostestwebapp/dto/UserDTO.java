@@ -9,7 +9,6 @@ import ru.kostapo.telrostestwebapp.entity.Role;
 @NoArgsConstructor
 @Builder
 public class UserDTO {
-    private Long id;
     private String username;
     private String password;
     private Role role;

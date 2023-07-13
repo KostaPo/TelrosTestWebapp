@@ -1,0 +1,22 @@
+2023-07-13 19:47:17 DEBUG UserServiceImpl:133 - UserDetails username:admin role:ADMIN
+2023-07-13 20:24:38 DEBUG MainController:14 - get request on index page
+2023-07-13 20:24:41 DEBUG UserServiceImpl:135 - load UserDetails username:admin role:ADMIN
+2023-07-13 20:24:41 DEBUG UserServiceImpl:76 - find user by username:admin
+2023-07-13 20:24:41 DEBUG UserServiceImpl:50 - get all users list
+2023-07-13 20:24:41 DEBUG UserController:36 - find all for ADMIN role
+2023-07-13 20:25:38 DEBUG UserServiceImpl:76 - find user by username:ivan812
+2023-07-13 20:25:45 DEBUG UserServiceImpl:120 - update user by username:ivan812
+2023-07-13 20:25:45 DEBUG UserController:79 - ADMIN update user info for username:ivan812
+2023-07-13 20:25:45 DEBUG UserServiceImpl:76 - find user by username:admin
+2023-07-13 20:25:45 DEBUG UserServiceImpl:50 - get all users list
+2023-07-13 20:25:45 DEBUG UserController:36 - find all for ADMIN role
+2023-07-13 20:25:56 DEBUG UserServiceImpl:104 - add new user username:qwe
+2023-07-13 20:25:56 DEBUG UserController:55 - ADMIN add new user with username:qwe
+2023-07-13 20:25:56 DEBUG UserServiceImpl:76 - find user by username:admin
+2023-07-13 20:25:56 DEBUG UserServiceImpl:50 - get all users list
+2023-07-13 20:25:56 DEBUG UserController:36 - find all for ADMIN role
+2023-07-13 20:26:00 DEBUG UserServiceImpl:125 - delete user by username:qwe
+2023-07-13 20:26:00 DEBUG UserController:63 - ADMIN delete user by username:qwe
+2023-07-13 20:26:00 DEBUG UserServiceImpl:76 - find user by username:admin
+2023-07-13 20:26:00 DEBUG UserServiceImpl:50 - get all users list
+2023-07-13 20:26:00 DEBUG UserController:36 - find all for ADMIN role
