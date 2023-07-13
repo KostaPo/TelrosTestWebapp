@@ -1,5 +1,6 @@
 package ru.kostapo.telrostestwebapp.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kostapo.telrostestwebapp.dto.UserDTO;
 import ru.kostapo.telrostestwebapp.entity.Role;
-import ru.kostapo.telrostestwebapp.entity.User;
 import ru.kostapo.telrostestwebapp.service.UserService;
 
 import java.util.List;
@@ -34,28 +34,32 @@ public class UserController {
             return "users"; // Вернуть представление для таблицы всех пользователей для администратора
         } else {
             model.addAttribute("user", userDTO);
-            return "info"; // Вернуть представление для личной карточки авторизованного пользователя
+            return "info"; // Вернуть представление для личной карточки обычного пользователя
         }
     }
 
-    @GetMapping("/users/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
-        return "redirect:/users";
-    }
-
     @GetMapping("/users/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getAddUserForm(UserDTO userDTO) {
         return "create";
     }
 
     @PostMapping("/users/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public String addUser(UserDTO userDTO) {
         userService.save(userDTO);
         return "redirect:/users";
     }
 
+    @GetMapping("/users/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.delete(id);
+        return "redirect:/users";
+    }
+
     @GetMapping("/users/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getUpdateForm(@PathVariable("id") Long id, Model model){
         UserDTO userDTO = userService.findById(id);
         model.addAttribute("user", userDTO);
@@ -63,6 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/users/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateUser(UserDTO userDTO){
         userService.update(userDTO);
         return "redirect:/users";

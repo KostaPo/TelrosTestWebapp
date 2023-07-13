@@ -52,8 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                     .authorizeRequests()
-                    .antMatchers("/users").authenticated() // Доступ для всех авторизованных пользователей
-                    .antMatchers("/users/**").hasRole(Role.ADMIN.name()) // Доступ только для роли ADMIN
+                    .antMatchers("/users").authenticated()
+                    .antMatchers("/users/**").hasRole(Role.ADMIN.name())
                 .and()
                     .formLogin()
                     .loginPage("/login")
