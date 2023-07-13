@@ -20,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -52,7 +53,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public String addUser(UserDTO userDTO) {
         userService.save(userDTO);
-        log.debug("ADMIN add new user with username:"+userDTO.getUsername());
+        log.debug("ADMIN add new user with username:" + userDTO.getUsername());
         return "redirect:/users";
     }
 
@@ -60,13 +61,13 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public String deleteUser(@PathVariable("username") String username) {
         userService.delete(username);
-        log.debug("ADMIN delete user by username:"+username);
+        log.debug("ADMIN delete user by username:" + username);
         return "redirect:/users";
     }
 
     @GetMapping("/users/update/{username}")
     @PreAuthorize("hasRole('ADMIN')")
-    public String getUpdateForm(@PathVariable("username") String username, Model model){
+    public String getUpdateForm(@PathVariable("username") String username, Model model) {
         UserDTO userDTO = userService.findByUsername(username);
         model.addAttribute("user", userDTO);
         return "update";
@@ -74,9 +75,9 @@ public class UserController {
 
     @PostMapping("/users/update")
     @PreAuthorize("hasRole('ADMIN')")
-    public String updateUser(UserDTO userDTO){
+    public String updateUser(UserDTO userDTO) {
         userService.update(userDTO);
-        log.debug("ADMIN update user info for username:"+userDTO.getUsername());
+        log.debug("ADMIN update user info for username:" + userDTO.getUsername());
         return "redirect:/users";
     }
 }

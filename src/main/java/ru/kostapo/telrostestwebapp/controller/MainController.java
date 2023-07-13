@@ -20,13 +20,13 @@ public class MainController {
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model) {
         log.debug("get request on login page");
-        if(error != null) {
+        if (error != null) {
             model.addAttribute("error", error);
-            log.debug("login page request with error: "+error);
+            log.debug("login page request with error: " + error);
         }
-        if(logout != null) {
+        if (logout != null) {
             model.addAttribute("logout", logout);
-            log.debug("login page request with logout: "+logout);
+            log.debug("login page request with logout: " + logout);
         }
         return "login";
     }

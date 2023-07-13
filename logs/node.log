@@ -20,3 +20,9 @@
 2023-07-13 20:26:00 DEBUG UserServiceImpl:76 - find user by username:admin
 2023-07-13 20:26:00 DEBUG UserServiceImpl:50 - get all users list
 2023-07-13 20:26:00 DEBUG UserController:36 - find all for ADMIN role
+2023-07-13 20:54:00 DEBUG MainController:14 - get request on index page
+2023-07-13 20:54:07 DEBUG UserServiceImpl:135 - load UserDetails username:Vika role:USER in service
+2023-07-13 20:54:08 DEBUG UserServiceImpl:76 - find user by username:Vika in service
+2023-07-13 20:54:08 DEBUG UserController:41 - user info for USER role
+2023-07-13 20:54:17 DEBUG MainController:22 - get request on login page
+2023-07-13 20:54:17 DEBUG MainController:29 - login page request with logout: 

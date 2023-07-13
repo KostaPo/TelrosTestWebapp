@@ -51,19 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .authorizeRequests()
-                    .antMatchers("/users").authenticated()
-                    .antMatchers("/users/**").hasRole(Role.ADMIN.name())
+                .authorizeRequests()
+                .antMatchers("/users").authenticated()
+                .antMatchers("/users/**").hasRole(Role.ADMIN.name())
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/users", true)
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/users", true)
+                .permitAll()
                 .and()
-                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login?logout")
-                    .deleteCookies("JSESSIONID").invalidateHttpSession(true)
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("JSESSIONID").invalidateHttpSession(true)
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
     }
 }

@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Log4j
 @ControllerAdvice
 public class ErrorController {
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String exception(Exception exception, Model model) {
         String errorMessage = (exception != null ? exception.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        log.debug("get exception with message: "+errorMessage);
+        log.debug("get exception with message: " + errorMessage);
         return "error";
     }
 }

@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO findById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User with id = " + id + " not exist!"));
-        log.debug("find user by id:"+id+" in service");
+        log.debug("find user by id:" + id + " in service");
         return UserDTO.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO findByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username = " + username + " not exist!"));
-        log.debug("find user by username:"+username+" in service");
+        log.debug("find user by username:" + username + " in service");
         return UserDTO.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
                 .phone(userDTO.getPhone())
                 .build();
         userRepository.save(user);
-        log.debug("add new user username:"+userDTO.getUsername()+" in service");
+        log.debug("add new user username:" + userDTO.getUsername() + " in service");
     }
 
     @Override
@@ -117,12 +117,12 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
         userRepository.save(user);
-        log.debug("update user by username:"+userDTO.getUsername()+" in service");
+        log.debug("update user by username:" + userDTO.getUsername() + " in service");
     }
 
     @Override
     public void delete(String username) {
-        log.debug("delete user by username:"+username+" in service");
+        log.debug("delete user by username:" + username + " in service");
         userRepository.deleteByUsername(username);
     }
 
@@ -131,8 +131,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username = " + username + " not exist!"));
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority("ROLE_"+user.getRole().name()));
-        log.debug("load UserDetails username:"+username+" role:"+user.getRole().name() +" in service");
+        roles.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+        log.debug("load UserDetails username:" + username + " role:" + user.getRole().name() + " in service");
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
