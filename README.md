@@ -1,6 +1,20 @@
-# TelrosTestWebapp
-docker run -d --hostname TelrosDB --name TelrosDB -p 5400:5432 -e POSTGRES_USER=usr -e POSTGRES_PASSWORD=pwd -e POSTGRES_DB=telrosdb -v C:\telros:/var/lib/postgresql/data --restart=unless-stopped postgres:14.5
+**Задание:**  
+Разработать Web-приложение при запуске которого пользователь видит страницу авторизации и не может получить доступ к контактной информации других пользователей. После авторизации в системе загружается таблица со всеми пользователями для администратора или личная карточка авторизованного пользователя, который не имеет роли администратора.
+Реализовать возможность авторизации по логину и паролю.
+Реализовать CRUD модель для работы с пользователями системы (добавление, просмотр, изменение, удаление для администратора и просмотр для пользователя);
 
 
-админ - admin:admin
-юзер - inav812:ivan812
+**Стек технологий:**
+Java8, Spring (Boot, Data, Security), Hibernate, Postgresql, FlyWay, Thymeleaf, Lombok, Docker, Log4j.
+
+**Тестовые данные:**
+ADMIN - admin:admin
+USER - ivan812:ivan812
+
+
+**Билд проекта:**
+выполните в терминале команду 'mvn package'
+
+**Запуск проекта проекта:**
+1) Скопируйте файл docker-compose.yml на ваш сервер
+2) Запустите командой docker-compose up
